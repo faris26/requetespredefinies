@@ -1,0 +1,11 @@
+<queries>
+  <query name="Afficher les ventouses">
+    SELECT * FROM Ventouse WHERE idnum='{id}'
+  </query>
+  <query name="Afficher les pompes">
+    SELECT * FROM Pompe WHERE idnum='{id}'
+  </query>
+  <query name="Afficher les branchements">
+    SELECT * FROM Branchement WHERE idnum='{id}'
+  </query>
+</queries>
