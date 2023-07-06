@@ -21,6 +21,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+import os
 from PyQt5 import uic
 from qgis.core import QgsRectangle
 from qgis.PyQt.QtCore import QRectF
@@ -203,7 +204,8 @@ class MyPluginDialog(QDialog):
     def __init__(self, iface):
         super(MyPluginDialog, self).__init__()
         self.iface = iface
-        uic.loadUi("C:/Users/33766/AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins/requetespredefinies/requetespredefinies_dialog_base.ui", self)
+        ui_file_path = os.path.join(os.environ['APPDATA'], 'QGIS', 'QGIS3', 'profiles', 'default', 'python', 'plugins', 'requetespredefinies', 'requetespredefinies_dialog_base.ui') 
+        uic.loadUi(ui_file_path, self)
 
         self.setWindowTitle("requetespredefinies")
 
@@ -234,7 +236,9 @@ class MyPluginDialog(QDialog):
             QMessageBox.critical(self, "Erreur", "Veuillez sélectionner une requête.")
 
     def get_sql_query(self, query_name):
-        xml_file_path = r"C:\Users\33766\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\requetespredefinies\requetes.xml"
+        xml_file_path = os.path.join(os.environ['APPDATA'], 'QGIS', 'QGIS3', 'profiles', 'default', 'python', 'plugins', 'requetespredefinies', 'requetes.xml')
+        # xml_file_path = r"C:\Users\33766\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\requetespredefinies\requetes.xml"
+        
 
         if not os.path.isfile(xml_file_path):
             QMessageBox.critical(self, "Erreur", "Le fichier XML n'existe pas.")
@@ -258,7 +262,8 @@ class MyPluginDialog(QDialog):
         canvas.refresh()  # Rafraîchit la toile de la carte pour afficher les modifications
 
     def load_query_names(self):
-        xml_file_path = r"C:\Users\33766\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\requetespredefinies\requetes.xml"
+        xml_file_path = os.path.join(os.environ['APPDATA'], 'QGIS', 'QGIS3', 'profiles', 'default', 'python', 'plugins', 'requetespredefinies', 'requetes.xml')
+        # xml_file_path = r"C:\Users\33766\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\requetespredefinies\requetes.xml"
 
         if not os.path.isfile(xml_file_path):
             QMessageBox.critical(self, "Erreur", "Le fichier XML n'existe pas.")
